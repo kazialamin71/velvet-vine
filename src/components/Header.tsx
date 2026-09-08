@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { urlForImage } from "@/sanity/image";
+import type { CmsImage } from "@/sanity/types";
 
 const nav = [
   { label: "About", href: "/about" },
@@ -11,14 +14,25 @@ const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-export function Header({ siteName }: { siteName: string }) {
+export function Header({ siteName, logo }: { siteName: string; logo?: CmsImage }) {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-        <Link href="/" className="label tracking-[0.2em] text-ink" onClick={() => setOpen(false)}>
-          {siteName.toUpperCase()}
+        <Link href="/" className="flex items-center label tracking-[0.2em] text-ink" onClick={() => setOpen(false)}>
+          {logo?.asset ? (
+            <Image
+              src={urlForImage(logo).height(72).url()}
+              alt={siteName}
+              width={140}
+              height={36}
+              className="h-9 w-auto object-contain"
+              priority
+            />
+          ) : (
+            siteName.toUpperCase()
+          )}
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

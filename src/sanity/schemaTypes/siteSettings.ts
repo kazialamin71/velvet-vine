@@ -6,6 +6,7 @@ export const siteSettings = defineType({
   type: "document",
   fields: [
     defineField({ name: "name", title: "Company Name", type: "string" }),
+    defineField({ name: "logo", title: "Logo", type: "image", options: { hotspot: true } }),
     defineField({ name: "legalName", title: "Legal Name", type: "string" }),
     defineField({ name: "tagline", title: "Tagline", type: "string" }),
     defineField({ name: "description", title: "SEO Description", type: "text", rows: 3 }),

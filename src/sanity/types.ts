@@ -4,6 +4,7 @@ export type CmsImage = SanityImageSource & { asset?: { _ref: string } };
 
 export interface SiteSettings {
   name: string;
+  logo?: CmsImage;
   legalName: string;
   tagline: string;
   description: string;
