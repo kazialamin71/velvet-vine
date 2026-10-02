@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { HeroSlider, type HeroSlide } from "@/components/HeroSlider";
 import {
   CmsPhoto,
   Container,
@@ -34,24 +34,21 @@ export default async function HomePage() {
     getCertifications(),
   ]);
 
+  const heroSlides: HeroSlide[] = (
+    home.heroSlides?.length ? home.heroSlides : [home.heroBackgroundImage]
+  )
+    .filter((image) => image?.asset)
+    .map((image) => ({
+      src: urlForImage(image!).width(2400).height(1350).url(),
+      caption: (image as { caption?: string }).caption,
+    }));
+
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink text-cream">
-        {home.heroBackgroundImage?.asset && (
-          <>
-            <Image
-              src={urlForImage(home.heroBackgroundImage).width(2400).height(1350).url()}
-              alt=""
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
-          </>
-        )}
-        <div className="relative">
-          <Container className="pb-16 pt-20 md:pt-28">
+        <HeroSlider slides={heroSlides} intervalSeconds={home.heroSlideInterval}>
+          <Container className="pb-24 pt-24 md:pb-28 md:pt-32">
             <p className="label text-cream/50">{home.heroEyebrow}</p>
             <h1 className="mt-6 max-w-3xl font-serif text-5xl leading-[1.1] md:text-7xl">
               {home.heroHeading} <br />
@@ -67,6 +64,8 @@ export default async function HomePage() {
               </CTAButton>
             </div>
           </Container>
+        </HeroSlider>
+        <div className="relative">
           <StatsBar stats={stats} theme="dark" />
         </div>
       </section>

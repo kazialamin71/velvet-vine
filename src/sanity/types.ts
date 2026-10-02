@@ -17,6 +17,8 @@ export interface SiteSettings {
 }
 
 export interface HomePage {
+  heroSlides?: (CmsImage & { caption?: string })[];
+  heroSlideInterval?: number;
   heroBackgroundImage?: CmsImage;
   heroEyebrow: string;
   heroHeading: string;
