@@ -19,7 +19,6 @@ import {
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Velvet Vine — Garments Buying House for EU & US Brands",
   description:
     "Velvet Vine sources, samples, and quality-controls private label garment production across a vetted, certified factory network — from first tech pack to warehouse delivery.",
   alternates: { canonical: "/" },

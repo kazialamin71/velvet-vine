@@ -18,7 +18,7 @@ const body = Inter({
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteSettings();
-  const title = `${site.name} — ${site.tagline}`;
+  const title = site.name;
 
   return {
     metadataBase: new URL(site.url),
