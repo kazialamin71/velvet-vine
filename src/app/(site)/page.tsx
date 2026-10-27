@@ -102,7 +102,8 @@ export default async function HomePage() {
       <section className="bg-cream-dark py-20 md:py-28">
         <CmsPhoto
           image={home.productionFacilityPhoto}
-          label="Production facility — photo placeholder"
+          label="Garment workers on a sewing line"
+          fallbackSrc="/images/production-facility.jpg"
           dark
           className="h-56 text-cream/20 md:h-72"
         />

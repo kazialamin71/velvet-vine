@@ -52,7 +52,8 @@ export default async function AboutPage() {
         <Container className="grid gap-10 md:grid-cols-2 md:items-center">
           <CmsPhoto
             image={about.teamPhoto}
-            label="Our team on the factory floor — photo placeholder"
+            label="Our team on the factory floor"
+            fallbackSrc="/images/team-factory-floor.jpg"
             className="h-72 md:h-96"
           />
           <div>

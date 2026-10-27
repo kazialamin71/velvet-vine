@@ -75,19 +75,23 @@ export function CmsPhoto({
   label,
   className = "",
   dark = false,
+  fallbackSrc,
 }: {
   image?: CmsImage | null;
   label: string;
   className?: string;
   dark?: boolean;
+  /** Local image (e.g. "/images/x.jpg") shown when no photo has been uploaded in Sanity yet. */
+  fallbackSrc?: string;
 }) {
-  if (!image?.asset) {
+  const src = image?.asset ? urlForImage(image).width(1600).url() : fallbackSrc;
+  if (!src) {
     return <PlaceholderPhoto label={label} className={className} dark={dark} />;
   }
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <Image
-        src={urlForImage(image).width(1600).url()}
+        src={src}
         alt={label}
         fill
         className="object-cover"

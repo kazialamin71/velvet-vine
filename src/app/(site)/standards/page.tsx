@@ -55,7 +55,8 @@ export default async function StandardsPage() {
             </div>
             <CmsPhoto
               image={page.qualityInspectionPhoto}
-              label="Quality inspection — photo placeholder"
+              label="Quality inspection of fabric"
+              fallbackSrc="/images/quality-inspection.jpg"
               dark
               className="mt-8 h-48 text-cream/20"
             />
@@ -66,7 +67,8 @@ export default async function StandardsPage() {
       <section className="relative">
         <CmsPhoto
           image={page.factoryFloorPhoto}
-          label="Factory floor — photo placeholder"
+          label="Factory floor"
+          fallbackSrc="/images/factory-floor.jpg"
           className="h-72 md:h-96"
         />
         <div className="absolute inset-0 flex items-end bg-black/30">

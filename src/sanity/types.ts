@@ -12,6 +12,7 @@ export interface SiteSettings {
   email: string;
   phone: string;
   foundedYear: number;
+  enquiryDestination?: "sheets" | "email" | "both";
   social: { linkedin?: string; instagram?: string };
   address: { locality?: string; country?: string };
 }

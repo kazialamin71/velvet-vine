@@ -134,8 +134,17 @@ it uses React's `useActionState` hook wired to `submitEnquiry` from `actions.ts`
 
 `actions.ts` starts with `"use server"` — this makes `submitEnquiry` a **Server Action**: the
 browser calls it like a normal async function, but it actually executes on the server (Next.js
-generates the RPC plumbing). Right now it validates fields and `console.log`s the result; no
-email/CRM provider is wired up yet.
+generates the RPC plumbing). It validates fields, then delivers the enquiry to the destination
+chosen in Studio under Site Settings → "Contact Form Destination" (`enquiryDestination`:
+`sheets` (default), `email`, or `both`):
+
+- **Google Sheet** — `src/lib/sheets.ts` POSTs to a Google Apps Script web app
+  (`scripts/google-sheets-webhook.gs`, which includes setup steps) using
+  `GOOGLE_SHEETS_WEBHOOK_URL` and `GOOGLE_SHEETS_WEBHOOK_SECRET`.
+- **Email** — `src/lib/mail.ts` sends via Microsoft Graph (Office 365) using `MS_TENANT_ID`,
+  `MS_CLIENT_ID`, `MS_CLIENT_SECRET`, `MAIL_FROM` and `MAIL_TO`. Reply-To is the enquirer.
+
+With `both`, the submission succeeds if at least one destination accepts it; failures are logged.
 
 ---
 

@@ -15,6 +15,22 @@ export const siteSettings = defineType({
     defineField({ name: "phone", title: "Phone", type: "string" }),
     defineField({ name: "foundedYear", title: "Founded Year", type: "number" }),
     defineField({
+      name: "enquiryDestination",
+      title: "Contact Form Destination",
+      description:
+        "Where contact-form enquiries are delivered. Google Sheet and Email each need their environment variables set on the server.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Google Sheet", value: "sheets" },
+          { title: "Email (Office 365)", value: "email" },
+          { title: "Both", value: "both" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "sheets",
+    }),
+    defineField({
       name: "social",
       title: "Social Links",
       type: "object",
