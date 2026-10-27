@@ -22,14 +22,17 @@ export function Header({ siteName, logo }: { siteName: string; logo?: CmsImage }
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         <Link href="/" className="flex items-center label tracking-[0.2em] text-ink" onClick={() => setOpen(false)}>
           {logo?.asset ? (
-            <Image
-              src={urlForImage(logo).height(72).url()}
-              alt={siteName}
-              width={140}
-              height={36}
-              className="h-9 w-auto object-contain"
-              priority
-            />
+            <span className="flex items-center gap-3">
+              <Image
+                src={urlForImage(logo).height(72).url()}
+                alt=""
+                width={140}
+                height={36}
+                className="h-9 w-auto object-contain"
+                priority
+              />
+              <span className="whitespace-nowrap font-serif text-xl normal-case tracking-normal">{siteName}</span>
+            </span>
           ) : (
             siteName.toUpperCase()
           )}
